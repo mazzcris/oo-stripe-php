@@ -1,6 +1,6 @@
 {
-    "name": "mazzcris/oo-stripe-php",
-    "description": "A wrapper library for Stripe's PHP SDK with an object-oriented interface",
+    "name": "oo-stripe/oo-stripe-php",
+    "description": "An enhanced, object-oriented wrapper for Stripe's PHP SDK, providing custom typed objects and convenient helper methods.",
     "type": "library",
     "require": {
         "stripe/stripe-php": "^16.1.1"
