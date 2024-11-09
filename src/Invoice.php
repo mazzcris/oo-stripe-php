@@ -85,4 +85,9 @@ namespace Mazzcris\OoStripePhp;
 class Invoice extends \Stripe\Invoice
 {
     use DynamicGetterTrait;
+
+    public function getCreatedAt()
+    {
+        return $this->getCreated();
+    }
 }

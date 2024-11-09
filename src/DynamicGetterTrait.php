@@ -9,14 +9,16 @@ trait DynamicGetterTrait
         if (str_starts_with($name, 'get')) {
             $property = $this->camelToSnake(lcfirst(substr($name, 3)));
 
-            if (!isset($this->$property) && $this->$property !== null) {
+
+
+            if (!$this->offsetExists($property)) {
                 throw new \BadMethodCallException("Method {$name} does not exist");
             }
 
             return $this->transformProperty($this->$property);
         }
 
-        throw new \BadMethodCallException("Method {$name} does not exist");
+        throw new \BadMethodCallException("Method {$name} is not valid");
     }
 
     private function camelToSnake($string): string

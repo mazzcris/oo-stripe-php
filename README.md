@@ -45,7 +45,7 @@ composer install
 
 2. Run tests:
 ```bash
-/vendor/bin/phpunit (or: make test)
+/vendor/bin/phpunit (or: make unit)
 ```
 
 ## License

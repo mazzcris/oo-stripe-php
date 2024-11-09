@@ -32,6 +32,7 @@ class InvoiceTest extends TestCase
         $this->assertNull($invoice->getCharge());
         $this->assertEquals("charge_automatically", $invoice->getCollectionMethod());
         $this->assertEquals((new \Datetime())->setTimestamp(1680644467), $invoice->getCreated());
+        $this->assertEquals((new \Datetime())->setTimestamp(1680644467), $invoice->getCreatedAt());
         $this->assertEquals("usd", $invoice->getCurrency());
         $this->assertNull($invoice->getCustomFields());
         $this->assertEquals("cus_AaZwdNtLEOXuaA", $invoice->getCustomer());
