@@ -1,5 +1,5 @@
 {
-    "name": "oo-stripe/oo-stripe-php",
+    "name": "oo-money/oo-stripe-php",
     "description": "An enhanced, object-oriented wrapper for Stripe's PHP SDK, providing custom typed objects and convenient helper methods.",
     "type": "library",
     "require": {
