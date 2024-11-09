@@ -2,21 +2,53 @@
 
 namespace Mazzcris\OoStripePhp;
 
-use Stripe\StripeClient;
-
-class Invoice
+/**
+ * @method getId()
+ * @method getObject()
+ * @method getAmount()
+ * @method getAmountCapturable()
+ * @method getAmountDetails()
+ * @method getAmountReceived()
+ * @method getApplication()
+ * @method getApplicationFeeAmount()
+ * @method getAutomaticPaymentMethods()
+ * @method getCanceledAt()
+ * @method getCancellationReason()
+ * @method getCaptureMethod()
+ * @method getClientSecret()
+ * @method getConfirmationMethod()
+ * @method getCreated()
+ * @method getCurrency()
+ * @method getCustomer()
+ * @method getDescription()
+ * @method getInvoice()
+ * @method getLastPaymentError()
+ * @method getLatestCharge()
+ * @method getLivemode()
+ * @method getMetadata()
+ * @method getNextAction()
+ * @method getOnBehalfOf()
+ * @method getPaymentMethod()
+ * @method getPaymentMethodOptions()
+ * @method getPaymentMethodTypes()
+ * @method getProcessing()
+ * @method getReceiptEmail()
+ * @method getReview()
+ * @method getSetupFutureUsage()
+ * @method getShipping()
+ * @method getSource()
+ * @method getStatementDescriptor()
+ * @method getStatementDescriptorSuffix()
+ * @method getStatus()
+ * @method getTransferData()
+ * @method getTransferGroup()
+ */
+class PaymentIntent extends \Stripe\PaymentIntent
 {
-    private StripeClient $stripeClient;
+    use DynamicGetterTrait;
 
-    public function __construct(string $apiKey)
+    public function requiresPaymentMethod(): bool
     {
-        $this->stripeClient = new StripeClient($apiKey);
-    }
-
-    // Example method to get an invoice with structured getters
-    public function getInvoice(string $invoiceId): Invoice
-    {
-        $stripeInvoice = $this->stripeClient->invoices->retrieve($invoiceId);
-        return new Invoice($stripeInvoice);
+        return 'requires_payment_method' == $this->getStatus();
     }
 }

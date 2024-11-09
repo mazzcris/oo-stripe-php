@@ -1,115 +1,68 @@
 <?php
 
-use Mazzcris\OoStripePhp\Invoice;
+use Mazzcris\OoStripePhp\PaymentIntent;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
-use Stripe\Collection as StripeCollection;
 use Stripe\StripeObject;
 
-class InvoiceTest extends TestCase
+class PaymentIntentTest extends TestCase
 {
     #[Test]
-    public function testGetCustomerName()
+    public function testGetters()
     {
-        $invoice = Invoice::constructFrom(json_decode(file_get_contents(__DIR__ . '/fixtures/invoice.json'), true));
+        $paymentIntent = PaymentIntent::constructFrom(json_decode(file_get_contents(__DIR__ . '/fixtures/paymentIntent.json'), true));
 
-        $this->assertEquals('in_2MtHbALkdIwHu7ixl4Ozz123', $invoice->getId());
-        $this->assertEquals('jennyrosen@example.com', $invoice->getCustomerEmail());
-        $this->assertEquals('invoice', $invoice->getObject());
-        $this->assertEquals('US', $invoice->getAccountCountry());
-        $this->assertEquals('Stripe Docs', $invoice->getAccountName());
-        $this->assertNull($invoice->getAccountTaxIds());
-        $this->assertEquals(0, $invoice->getAmountDue());
-        $this->assertEquals(0, $invoice->getAmountPaid());
-        $this->assertEquals(0, $invoice->getAmountRemaining());
-        $this->assertEquals(0, $invoice->getAmountShipping());
-        $this->assertNull($invoice->getApplication());
-        $this->assertNull($invoice->getApplicationFeeAmount());
-        $this->assertEquals(0, $invoice->getAttemptCount());
-        $this->assertFalse($invoice->getAttempted());
-        $this->assertFalse($invoice->getAutoAdvance());
-        $this->assertEquals("manual", $invoice->getBillingReason());
-        $this->assertNull($invoice->getCharge());
-        $this->assertEquals("charge_automatically", $invoice->getCollectionMethod());
-        $this->assertEquals((new \Datetime())->setTimestamp(1680644467), $invoice->getCreated());
-        $this->assertEquals("usd", $invoice->getCurrency());
-        $this->assertNull($invoice->getCustomFields());
-        $this->assertEquals("cus_AaZwdNtLEOXuaA", $invoice->getCustomer());
-        $this->assertNull($invoice->getCustomerAddress());
-        $this->assertEquals("jennyrosen@example.com", $invoice->getCustomerEmail());
-        $this->assertEquals("Jenny Rosen", $invoice->getCustomerName());
-        $this->assertNull($invoice->getCustomerPhone());
-        $this->assertNull($invoice->getCustomerShipping());
-        $this->assertEquals("none", $invoice->getCustomerTaxExempt());
-        $this->assertEquals([], $invoice->getCustomerTaxIds());
-        $this->assertNull($invoice->getDefaultPaymentMethod());
-        $this->assertNull($invoice->getDefaultSource());
-        $this->assertEquals([], $invoice->getDefaultTaxRates());
-        $this->assertNull($invoice->getDescription());
-        $this->assertNull($invoice->getDiscount());
-        $this->assertEquals([], $invoice->getDiscounts());
-        $this->assertNull($invoice->getDueDate());
-        $this->assertNull($invoice->getEndingBalance());
-        $this->assertNull($invoice->getFooter());
-        $this->assertNull($invoice->getFromInvoice());
-        $this->assertNull($invoice->getHostedInvoiceUrl());
-        $this->assertNull($invoice->getInvoicePdf());
-        $this->assertNull($invoice->getLastFinalizationError());
-        $this->assertNull($invoice->getLatestRevision());
-        $this->assertFalse($invoice->getLivemode());
-        $this->assertEquals(new StripeObject(), $invoice->getMetadata());
-        $this->assertNull($invoice->getNextPaymentAttempt());
-        $this->assertNull($invoice->getNumber());
-        $this->assertNull($invoice->getOnBehalfOf());
-        $this->assertFalse($invoice->getPaid());
-        $this->assertFalse($invoice->getPaidOutOfBand());
-        $this->assertNull($invoice->getPaymentIntent());
-        $this->assertEquals((new \Datetime())->setTimestamp(1680644467), $invoice->getPeriodEnd());
-        $this->assertEquals((new \Datetime())->setTimestamp(1680644467), $invoice->getPeriodStart());
-        $this->assertEquals(0, $invoice->getPostPaymentCreditNotesAmount());
-        $this->assertEquals(0, $invoice->getPrePaymentCreditNotesAmount());
-        $this->assertNull($invoice->getQuote());
-        $this->assertNull($invoice->getReceiptNumber());
-        $this->assertNull($invoice->getRenderingOptions());
-        $this->assertNull($invoice->getShippingCost());
-        $this->assertNull($invoice->getShippingDetails());
-        $this->assertEquals(0, $invoice->getStartingBalance());
-        $this->assertNull($invoice->getStatementDescriptor());
-        $this->assertEquals("draft", $invoice->getStatus());
-        $this->assertNull($invoice->getSubscription());
-        $this->assertEquals(0, $invoice->getSubtotal());
-        $this->assertEquals(0, $invoice->getSubtotalExcludingTax());
-        $this->assertNull($invoice->getTax());
-        $this->assertNull($invoice->getTestClock());
-        $this->assertEquals(0, $invoice->getTotal());
-        $this->assertEquals([], $invoice->getTotalDiscountAmounts());
-        $this->assertEquals(0, $invoice->getTotalExcludingTax());
-        $this->assertEquals([], $invoice->getTotalTaxAmounts());
-        $this->assertNull($invoice->getTransferData());
-        $this->assertEquals((new \Datetime())->setTimestamp(1680644467), $invoice->getWebhooksDeliveredAt());
+        $this->assertEquals('pi_3MtwBwLkdIwHu7ix28a3t123', $paymentIntent->getId());
+        $this->assertEquals('payment_intent', $paymentIntent->getObject());
+        $this->assertEquals(2000, $paymentIntent->getAmount());
+        $this->assertEquals(0, $paymentIntent->getAmountCapturable());
+        $this->assertEquals(StripeObject::constructFrom(['tip' => []]), $paymentIntent->getAmountDetails());
+        $this->assertEquals(0, $paymentIntent->getAmountReceived());
+        $this->assertNull($paymentIntent->getApplication());
+        $this->assertNull($paymentIntent->getApplicationFeeAmount());
+        $this->assertEquals(StripeObject::constructFrom(['enabled' => true]), $paymentIntent->getAutomaticPaymentMethods());
+        $this->assertNull($paymentIntent->getCanceledAt());
+        $this->assertNull($paymentIntent->getCancellationReason());
+        $this->assertEquals('automatic', $paymentIntent->getCaptureMethod());
+        $this->assertEquals('pi_3MtwBwLkdIwHu7ix28a3t123_secret_YrKJUKribcBjcG8HVhfZlu123', $paymentIntent->getClientSecret());
+        $this->assertEquals('automatic', $paymentIntent->getConfirmationMethod());
+        $this->assertEquals((new \DateTime())->setTimestamp(1680800504), $paymentIntent->getCreated());
+        $this->assertEquals('usd', $paymentIntent->getCurrency());
+        $this->assertNull($paymentIntent->getCustomer());
+        $this->assertNull($paymentIntent->getDescription());
+        $this->assertNull($paymentIntent->getInvoice());
+        $this->assertNull($paymentIntent->getLastPaymentError());
+        $this->assertNull($paymentIntent->getLatestCharge());
+        $this->assertFalse($paymentIntent->getLivemode());
+        $this->assertEquals(new StripeObject(), $paymentIntent->getMetadata());
+        $this->assertNull($paymentIntent->getNextAction());
+        $this->assertNull($paymentIntent->getOnBehalfOf());
+        $this->assertNull($paymentIntent->getPaymentMethod());
         $this->assertEquals(StripeObject::constructFrom([
-            'enabled'   => false,
-            'liability' => null,
-            'status'    => null
-        ]), $invoice->getAutomaticTax());
-        $this->assertEquals(StripeObject::constructFrom(['type' => 'self']), $invoice->getIssuer());
-        $this->assertEquals(StripeCollection::constructFrom([
-            "object"      => "list",
-            "data"        => [],
-            "has_more"    => false,
-            "total_count" => 0,
-            "url"         => "/v1/invoices/in_2MtHbALkdIwHu7ixl4Ozz123/lines"
-        ]), $invoice->getLines());
-        $this->assertEquals(StripeObject::constructFrom([
-            "default_mandate"        => null,
-            "payment_method_options" => null,
-            "payment_method_types"   => null,
-        ]), $invoice->getPaymentSettings());
-        $this->assertEquals(StripeObject::constructFrom([
-            "finalized_at"            => null,
-            "marked_uncollectible_at" => null,
-            "paid_at"                 => null,
-            "voided_at"               => null,
-        ]), $invoice->getStatusTransitions());
+            'card' => [
+                'installments'           => null,
+                'mandate_options'        => null,
+                'network'                => null,
+                'request_three_d_secure' => "automatic"
+            ],
+            'link' => [
+                'persistent_token' => null
+            ]
+        ]), $paymentIntent->getPaymentMethodOptions());
+
+        $this->assertEquals(['card', 'link'], $paymentIntent->getPaymentMethodTypes());
+        $this->assertNull($paymentIntent->getProcessing());
+        $this->assertNull($paymentIntent->getReceiptEmail());
+        $this->assertNull($paymentIntent->getReview());
+        $this->assertNull($paymentIntent->getSetupFutureUsage());
+        $this->assertNull($paymentIntent->getShipping());
+        $this->assertNull($paymentIntent->getSource());
+        $this->assertNull($paymentIntent->getStatementDescriptor());
+        $this->assertNull($paymentIntent->getStatementDescriptorSuffix());
+        $this->assertEquals('requires_payment_method', $paymentIntent->getStatus());
+        $this->assertTrue($paymentIntent->requiresPaymentMethod());
+        $this->assertNull($paymentIntent->getTransferData());
+        $this->assertNull($paymentIntent->getTransferGroup());
+
     }
 }
