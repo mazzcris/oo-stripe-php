@@ -1,6 +1,6 @@
 # OO-Stripe-PHP
 
-[![Latest Version](https://img.shields.io/packagist/v/mazzcris/oo-stripe-php.svg?style=flat-square)](https://packagist.org/packages/mazzcris/oo-stripe-php)
+[![Latest Version](https://img.shields.io/packagist/v/oo-money/oo-stripe-php.svg?style=flat-square)](https://packagist.org/packages/oo-money/oo-stripe-php)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
 
 A lightweight PHP wrapper for Stripe's PHP SDK, providing an object-oriented interface for more readable and structured access to Stripe objects. `oo-stripe-php` allows you to work with Stripe data in a more streamlined way by transforming raw data fields into useful objects, such as `DateTime`.
@@ -16,7 +16,7 @@ A lightweight PHP wrapper for Stripe's PHP SDK, providing an object-oriented int
 [//]: # (Install the package via Composer:)
 [//]: # ()
 [//]: # (```bash)
-[//]: # (composer require mazzcris/oo-stripe-php)
+[//]: # (composer require oo-money/oo-stripe-php)
 [//]: # (```)
 ## Usage
 
