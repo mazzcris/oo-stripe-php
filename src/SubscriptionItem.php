@@ -29,27 +29,8 @@ namespace Mazzcris\OoStripePhp;
  * @method getDiscounts()
  * @method getEndedAt()
  * @method getInvoiceSettings()
- * @method getItems()
- * @method getLatestInvoice()
- * @method getLivemode()
- * @method getMetadata()
- * @method getNextPendingInvoiceItemInvoice()
- * @method getOnBehalfOf()
- * @method getPauseCollection()
- * @method getPaymentSettings()
- * @method getPendingInvoiceItemInterval()
- * @method getPendingSetupIntent()
- * @method getPendingUpdate()
- * @method getSchedule()
- * @method getStartDate()
- * @method getStatus()
- * @method getTestClock()
- * @method getTransferData()
- * @method getTrialEnd()
- * @method getTrialSettings()
- * @method getTrialStart()
  */
-class Subscription extends \Stripe\Subscription
+class SubscriptionItem extends \Stripe\SubscriptionItem
 {
     use DynamicGetterTrait;
 }
