@@ -1,6 +1,6 @@
 <?php
 
-use Mazzcris\OoStripePhp\PaymentIntent;
+use Mazzcris\OoStripePhp\OoPaymentIntent;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Stripe\StripeObject;
@@ -10,7 +10,7 @@ class PaymentIntentTest extends TestCase
     #[Test]
     public function testGetters()
     {
-        $paymentIntent = PaymentIntent::constructFrom(json_decode(file_get_contents(__DIR__ . '/fixtures/paymentIntent.json'), true));
+        $paymentIntent = OoPaymentIntent::constructFrom(json_decode(file_get_contents(__DIR__ . '/fixtures/paymentIntent.json'), true));
 
         $this->assertEquals('pi_3MtwBwLkdIwHu7ix28a3t123', $paymentIntent->getId());
         $this->assertEquals('payment_intent', $paymentIntent->getObject());

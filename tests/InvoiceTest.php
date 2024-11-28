@@ -1,6 +1,6 @@
 <?php
 
-use Mazzcris\OoStripePhp\Invoice;
+use Mazzcris\OoStripePhp\OoInvoice;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Stripe\Collection as StripeCollection;
@@ -11,7 +11,7 @@ class InvoiceTest extends TestCase
     #[Test]
     public function testGetters()
     {
-        $invoice = Invoice::constructFrom(json_decode(file_get_contents(__DIR__ . '/fixtures/invoice.json'), true));
+        $invoice = OoInvoice::constructFrom(json_decode(file_get_contents(__DIR__ . '/fixtures/invoice.json'), true));
 
         $this->assertEquals('in_2MtHbALkdIwHu7ixl4Ozz123', $invoice->getId());
         $this->assertEquals('jennyrosen@example.com', $invoice->getCustomerEmail());

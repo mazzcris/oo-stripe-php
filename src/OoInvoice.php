@@ -82,7 +82,7 @@ namespace Mazzcris\OoStripePhp;
  * @method getPaymentSettings()
  * @method getStatusTransitions()
  */
-class Invoice extends \Stripe\Invoice
+class OoInvoice extends \Stripe\Invoice
 {
     use DynamicGetterTrait;
 

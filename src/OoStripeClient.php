@@ -7,7 +7,7 @@ use Stripe\PaymentIntent;
 #[\AllowDynamicProperties]
 class OoStripeClient extends \Stripe\StripeClient
 {
-    public function getInvoice(string $invoiceId, ?array $expand = null): Invoice
+    public function getInvoice(string $invoiceId, ?array $expand = null): OoInvoice
     {
         $params = [];
 
@@ -17,7 +17,7 @@ class OoStripeClient extends \Stripe\StripeClient
 
         $stripeInvoice = $this->invoices->retrieve($invoiceId, $params);
 
-        return new Invoice($stripeInvoice);
+        return new OoInvoice($stripeInvoice);
     }
 
     public function getPaymentIntent(string $paymentIntentId, ?array $expand = null): PaymentIntent

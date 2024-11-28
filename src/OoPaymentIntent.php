@@ -43,7 +43,7 @@ namespace Mazzcris\OoStripePhp;
  * @method getTransferData()
  * @method getTransferGroup()
  */
-class PaymentIntent extends \Stripe\PaymentIntent
+class OoPaymentIntent extends \Stripe\PaymentIntent
 {
     use DynamicGetterTrait;
 
