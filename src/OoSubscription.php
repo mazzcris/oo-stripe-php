@@ -49,7 +49,7 @@ namespace Mazzcris\OoStripePhp;
  * @method getTrialSettings()
  * @method getTrialStart()
  */
-class Subscription extends \Stripe\Subscription
+class OoSubscription extends \Stripe\Subscription
 {
     use DynamicGetterTrait;
 }
